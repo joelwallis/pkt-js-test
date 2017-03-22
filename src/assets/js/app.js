@@ -4,18 +4,34 @@
   // the comment above declares the variable `API` as global to ESLint
   
   var $canvas = $('.canvas .block')
+  var $uploadBtn = $('#submit')
   var $addText = $('#addText')
   var $imageList = $('.image ul')
-  var closeButtonTpl = '<span class="glyphicon glyphicon-remove"></span>'
+  var closeBtnTpl = '<span class="glyphicon glyphicon-remove"></span>'
   
+  // Bootstrap the app
   $(function () {
+    $uploadBtn.click(function (ev) {
+      ev.preventDefault()
+      saveImage()
+    })
     $addText.click(addTextToCanvasCallback)
     populateImageList()
+    
+    /**
+     * Sends the given image file to the server
+     */
+    function saveImage () {
+      return API.Image.save()
+        .then(populateImageList)
+    }
     
     /**
      * Helper function that populates the image list on the sidebar
      */
     function populateImageList () {
+      $imageList.html('')
+      
       return API.Image.all()
         .then(function (images) {
           images
@@ -40,7 +56,7 @@
     function addTextToCanvas (text) {
       var tpl = '<div class="canvas-item">@contents @close-btn</div>'
         .replace('@contents', '<p>@text</p>')
-        .replace('@close-btn', closeButtonTpl)
+        .replace('@close-btn', closeBtnTpl)
         .replace('@text', text)
       var el = $(tpl)
       
@@ -67,7 +83,7 @@
     function addImageToCanvas (imgUrl) {
       var tpl = '<div class="canvas-item">@img @close-btn</div>'
         .replace('@img', '<img src="@img-url">')
-        .replace('@close-btn', closeButtonTpl)
+        .replace('@close-btn', closeBtnTpl)
         .replace('@img-url', imgUrl)
       var el = $(tpl)
       

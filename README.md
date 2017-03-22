@@ -7,7 +7,7 @@ You are required to implement a single page application that allows user to add 
 Below are the basic features for the application:
 
 - [x] user can see the existing images from folder `images` to the images list
-- [ ] user can *upload image* to folder `images` and directly added to images list
+- [x] user can *upload image* to folder `images` and directly added to images list
 - [x] user can *add and remove image / text* from the menu to the canvas
 - [x] user can *move the image / text* around the canvas
 

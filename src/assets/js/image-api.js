@@ -1,16 +1,21 @@
 ;(function ($) {
   'use strict'
   
-  var BASE_URL = '/images'
-  
   /**
    * Images API
    */
   var Image = {
     all: function () {
-      return $.get(BASE_URL)
+      return $.get('/images')
     },
-    save: function (image) {}
+    save: function () {
+      return jQuery.ajax('/uploads', {
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: new FormData(document.getElementById('image-form'))
+      })
+    }
   }
   
   // exposing Image to global scope
