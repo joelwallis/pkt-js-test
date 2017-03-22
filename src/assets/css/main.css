@@ -48,6 +48,16 @@ html, body {
   border: 1px solid;
   box-shadow: 0px 0px 5px black;
 }
+  
+.canvas-item {
+  position: absolute;
+}
+  .canvas-item .glyphicon {
+    position: absolute;
+    top: 0;
+    right: -20px;
+    cursor: pointer;
+  }
 
 .item {
   border: 1px solid transparent;
