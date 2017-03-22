@@ -4,7 +4,7 @@
   "description": "package for js candidate test",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon ./src/server.js"
   },
   "dependencies": {
     "express": "^4.13.4",
