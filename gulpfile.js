@@ -12,10 +12,7 @@ const conf = {
       output: 'build.css'
     },
     js: {
-      src: [
-        path.join(__dirname, 'node_modules/jquery/dist', 'jquery.js'),
-        path.join(__dirname, 'src/assets/js/*')
-      ],
+      src: path.join(__dirname, 'src/assets/js/*'),
       output: 'build.js'
     }
   },

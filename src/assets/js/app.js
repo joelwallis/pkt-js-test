@@ -1,6 +1,7 @@
 ;(function ($) {
   'use strict'
   /* global API */
+  // the comment above declares the variable `API` as global to ESLint
   
   var $canvas = $('.canvas .block')
   var $addText = $('#addText')
@@ -33,6 +34,9 @@
         })
     }
     
+    /**
+     * Adds a given text to the HTML canvas (the `<div>` element)
+     */
     function addTextToCanvas (text) {
       var tpl = '<div class="canvas-item">@contents @close-btn</div>'
         .replace('@contents', '<p>@text</p>')
@@ -44,9 +48,14 @@
         $(ev.currentTarget).parent().remove()
       })
       
-      el.appendTo($canvas)
+      return el
+        .appendTo($canvas)
+        .draggable()
     }
     
+    /**
+     * Helper to be used as click callack on the Add Text button of the sidebar
+     */
     function addTextToCanvasCallback (ev) {
       var text = window.prompt('Enter the text to be added to the canvas:')
       addTextToCanvas(text)
@@ -66,7 +75,9 @@
         $(ev.currentTarget).parent().remove()
       })
       
-      return el.appendTo($canvas)
+      return el
+        .appendTo($canvas)
+        .draggable()
     }
     
     /**
