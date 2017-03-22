@@ -28,6 +28,7 @@ try {
 }
 
 app.use( express.static(buildDir) );
+app.use( '/images', express.static(dataDir) );
 
 // define file name and destination to save
 let storage = multer.diskStorage({

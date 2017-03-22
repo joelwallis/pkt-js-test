@@ -12,7 +12,10 @@ const conf = {
       output: 'build.css'
     },
     js: {
-      src: path.join(__dirname, 'src/assets/js/*'),
+      src: [
+        path.join(__dirname, 'node_modules/jquery/dist', 'jquery.js'),
+        path.join(__dirname, 'src/assets/js/*')
+      ],
       output: 'build.js'
     }
   },
@@ -20,6 +23,13 @@ const conf = {
 }
 
 gulp.task('build', ['build:html', 'build:css', 'build:js'])
+gulp.task('watch', function () {
+  gulp.watch([
+    conf.tasks.html.src,
+    conf.tasks.css.src,
+    conf.tasks.js.src
+  ], ['build:html', 'build:css', 'build:js'])
+})
 
 // $ npm run build:html
 gulp.task('build:html', function () {
