@@ -4,7 +4,15 @@
   "description": "package for js candidate test",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js"
+    "start": "nodemon ./src/server.js",
+    "build:html": "gulp build:html",
+    "watch:html": "gulp watch:html",
+    "build:css": "gulp build:css",
+    "watch:css": "gulp watch:css",
+    "build:js": "gulp build:js",
+    "watch:js": "gulp watch:js",
+    "build": "gulp build",
+    "rebuild": "rm -fR build; gulp build"
   },
   "dependencies": {
     "express": "^4.13.4",
@@ -13,5 +21,9 @@
     "multer": "^1.1.0",
     "nodemon": "^1.9.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-concat": "^2.6.1"
+  }
 }

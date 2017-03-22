@@ -4,14 +4,35 @@ const express = require( 'express' );
 const multer = require( 'multer' );
 const fs = require( 'fs' );
 const junk = require( 'junk' );
+const path = require( 'path' );
 let app = express();
 
-app.use( express.static('./') );
+const projectDir = path.join(__dirname, '..')
+const srcDir = path.join(projectDir, 'src')
+const buildDir = path.join(projectDir, 'build')
+const dataDir = path.join(projectDir, 'images')
+
+// I'm building the project with gulp into the directory `build, so the server
+// needs the project to be built before working. Please run `npm run build`
+// before starting the server.
+// PS: I'm doing it synchronously to keep the code simple
+try {
+  fs.accessSync(buildDir)
+} catch (e) {
+  console.error([
+    'ERROR: Please build the source code before running the server script.',
+    '\n  ',
+    '$ npm run build'
+  ].join(''))
+  process.exit(1)
+}
+
+app.use( express.static(buildDir) );
 
 // define file name and destination to save
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname +  '/images')
+    cb(null, dataDir)
   },
   filename: (req, file, cb) => {
     let ext = file.originalname.split( '.' );
@@ -55,7 +76,7 @@ app.post( '/uploads', ( req, res ) => {
 
 app.get( '/images', ( req, res ) => {
   let file_path = req.protocol + '://' + req.get('host') + '/images/';
-  let files = fs.readdirSync( './images/' );
+  let files = fs.readdirSync( dataDir );
   files = files
           .filter( junk.not ) // remove .DS_STORE etc
           .map( f => file_path + f ); // map with url path
@@ -64,7 +85,7 @@ app.get( '/images', ( req, res ) => {
 
 // general route
 app.get( '/', ( req, res ) => {
-  res.sendFile( __dirname + '/index.html' );
+  res.sendFile( path.join(buildDir, '/index.html') );
 })
 
 var server = app.listen( 8000, _ => {
