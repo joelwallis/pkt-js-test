@@ -1,5 +1,7 @@
 ## Instructions
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/joelwallis/pkt-js-test.svg)](https://greenkeeper.io/)
+
 You are required to implement a single page application that allows user to add text and image into canvas.
 
 ## Features
