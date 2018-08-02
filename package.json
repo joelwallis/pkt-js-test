@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "express": "^4.13.4",
-    "jquery": "^2.2.4",
-    "junk": "^1.0.2",
+    "jquery": "^3.3.1",
+    "junk": "^2.1.0",
     "multer": "^1.1.0",
     "nodemon": "^1.9.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-cli": "^1.2.2",
+    "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1"
   }
 }
